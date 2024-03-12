@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.Product[0].UnitPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product[0].Images)
+                Image
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Product[0].Status)
@@ -50,7 +50,7 @@
                 @Html.DisplayFor(modelItem => item.UnitPrice)
             </td>
             <td>
-                <image src="@Model.Product[0].Images" />
+                    <image src="/images/@item.Images" class="img-fluid" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,17 @@ namespace Mock_Project_Group9.Pages.Products
     public class EditModel : PageModel
     {
         private readonly Mock_Project_Group9.Database.WebDBContext _context;
+        private IHostEnvironment _enviroment;
 
-        public EditModel(Mock_Project_Group9.Database.WebDBContext context)
+        public EditModel(Mock_Project_Group9.Database.WebDBContext context, IHostEnvironment enviroment)
         {
             _context = context;
+            _enviroment = enviroment;
         }
+
+        [DataType(DataType.Upload)]
+        [BindProperty]
+        public IFormFile? FileUpload { get; set; }
 
         [BindProperty]
         public Product Product { get; set; } = default!;
@@ -44,6 +51,16 @@ namespace Mock_Project_Group9.Pages.Products
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            if (FileUpload != null)
+            {
+                var file = Path.Combine(_enviroment.ContentRootPath, "Pages\\images", FileUpload.FileName);
+                Console.WriteLine(FileUpload.FileName);
+                Product.Images = FileUpload.FileName;
+                using (var fileStream = new FileStream(file, FileMode.Create))
+                {
+                    await FileUpload.CopyToAsync(fileStream);
+                }
+            }
             if (!ModelState.IsValid)
             {
                 return Page();

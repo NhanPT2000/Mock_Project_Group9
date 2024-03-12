@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Hosting;
 using Mock_Project_Group9.Database;
 using Mock_Project_Group9.Models.Products;
 
@@ -28,20 +29,33 @@ namespace Mock_Project_Group9.Pages.Products
         public IFormFile? FileUpload { get; set; }
         public IActionResult OnGet()
         {
-        ViewData["CategoryId"] = new SelectList(_context.categories, "CategoryId", "CategoryName");
+            ViewData["CategoryId"] = new SelectList(_context.categories, "CategoryId", "CategoryName");
             return Page();
         }
 
         [BindProperty]
         public Product Product { get; set; } = default!;
-        
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
             Product.ProductId = Guid.NewGuid();
-            Task image = GetImage();
-          if (!ModelState.IsValid || _context.products == null || Product == null)
+            if (FileUpload != null)
+            {
+                var file = Path.Combine(_enviroment.ContentRootPath, "Pages\\images", FileUpload.FileName);
+                Console.WriteLine(FileUpload.FileName);
+                Product.Images = FileUpload.FileName;
+                using (var fileStream = new FileStream(file, FileMode.Create))
+                {
+                    await FileUpload.CopyToAsync(fileStream);
+                }
+            }
+            else
+            {
+                Product.Images = "images/No_Image_Available.jpg";
+            }
+            if (!ModelState.IsValid || _context.products == null || Product == null)
             {
                 return Page();
             }
@@ -50,25 +64,5 @@ namespace Mock_Project_Group9.Pages.Products
 
             return RedirectToPage("./Index");
         }
-
-        public async Task GetImage()
-        {
-            {
-                if (FileUpload != null)
-                {
-                        var file = Path.Combine(_enviroment.ContentRootPath, "images", FileUpload.FileName);
-                        using (var fileStream = new FileStream(file, FileMode.Create))
-                        {
-                            await FileUpload.CopyToAsync(fileStream);
-                        }
-                        Product.Images = file.ToString();
-                    }
-                else
-                {
-                    Product.Images = "images/No_Image_Available.jpg";
-                }
-            }
-            }
-
-        }
     }
+}
