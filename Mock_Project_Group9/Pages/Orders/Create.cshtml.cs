@@ -21,7 +21,7 @@ namespace Mock_Project_Group9.Pages.Orders
 
         public IActionResult OnGet()
         {
-        ViewData["UserId"] = new SelectList(_context.users, "UserId", "Email");
+        ViewData["UserId"] = new SelectList(_context.users, "UserId", "UserName");
             return Page();
         }
 

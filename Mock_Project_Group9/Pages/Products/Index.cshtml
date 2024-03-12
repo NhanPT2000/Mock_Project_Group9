@@ -50,14 +50,14 @@
                 @Html.DisplayFor(modelItem => item.UnitPrice)
             </td>
             <td>
-                    <image src="/images/@item.Images" class="img-fluid" />
+                    <image src="/images/@item.Images" width ="100" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> 
+                <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> 
                 <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
             </td>
         </tr>

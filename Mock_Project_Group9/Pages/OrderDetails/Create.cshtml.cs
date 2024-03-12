@@ -33,6 +33,7 @@ namespace Mock_Project_Group9.Pages.OrderDetails
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            OrderDetails.OrderDetailId = Guid.NewGuid();
           if (!ModelState.IsValid || _context.orderDetails == null || OrderDetails == null)
             {
                 return Page();

@@ -22,7 +22,7 @@ namespace Mock_Project_Group9.Pages.Users
         public IActionResult OnGet()
         {
         ViewData["RoleId"] = new SelectList(_context.roles, "RoleId", "RoleName");
-        ViewData["UserId"] = new SelectList(_context.userDetails, "UserId", "Address");
+        ViewData["UserId"] = new SelectList(_context.userDetails, "UserId", "UserName");
             return Page();
         }
 
