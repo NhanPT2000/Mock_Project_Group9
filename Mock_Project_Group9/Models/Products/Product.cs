@@ -17,7 +17,7 @@ namespace Mock_Project_Group9.Models.Products
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
         /*Composite Key*/
-        public Guid BuyUserId {  get; set; }
+        public Guid? BuyUserId {  get; set; }
         public ICollection<BuyUser>? BuyUsers { get; set; }
         /**/
         public float UnitStock { get; set; }
