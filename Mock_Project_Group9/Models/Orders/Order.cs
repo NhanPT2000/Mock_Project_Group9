@@ -15,8 +15,8 @@ namespace Mock_Project_Group9.Models.Orders
         public User? User { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         [DisplayFormat(NullDisplayText ="No status")]
-        public string Status {  get; set; }
+        public string? Status {  get; set; }
 
-        public ICollection<OrderDetails> OrderDetails { get; set; }
+        public ICollection<OrderDetails>? OrderDetails { get; set; }
     }
 }

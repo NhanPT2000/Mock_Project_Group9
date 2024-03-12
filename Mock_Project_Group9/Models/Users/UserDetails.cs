@@ -21,6 +21,6 @@ namespace Mock_Project_Group9.Models.Users
         [DisplayFormat(NullDisplayText = "No status")]
         public string? Status { get; set; }
 
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }

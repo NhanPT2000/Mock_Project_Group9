@@ -15,19 +15,18 @@ namespace Mock_Project_Group9.Models.Products
         public string ProductName { get; set; }
 
         public Guid CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
         /*Composite Key*/
-        public Guid? BuyUserId {  get; set; }
         public ICollection<BuyUser>? BuyUsers { get; set; }
         /**/
         public float UnitStock { get; set; }
         public float UnitPrice { get; set; }
         [Column(TypeName = "nvarchar(250)")]
-        public string Images { get; set; }
+        public string? Images { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         [DisplayFormat(NullDisplayText ="No status")]
         public string Status { get; set;}
 
-        public ICollection<OrderDetails> OrderDetails { get; set; }
+        public ICollection<OrderDetails>? OrderDetails { get; set; }
     }
 }

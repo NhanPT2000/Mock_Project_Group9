@@ -58,7 +58,6 @@ namespace Mock_Project_Group9.Migrations
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BuyUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UnitStock = table.Column<float>(type: "real", nullable: false),
                     UnitPrice = table.Column<float>(type: "real", nullable: false),
                     Images = table.Column<string>(type: "nvarchar(250)", nullable: false),
@@ -83,8 +82,7 @@ namespace Mock_Project_Group9.Migrations
                     UserName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(20)", nullable: false),
                     RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    BuyUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Email = table.Column<string>(type: "nvarchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {

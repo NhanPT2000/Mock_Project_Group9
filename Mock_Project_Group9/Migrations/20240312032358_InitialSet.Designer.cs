@@ -12,7 +12,7 @@ using Mock_Project_Group9.Database;
 namespace Mock_Project_Group9.Migrations
 {
     [DbContext(typeof(WebDBContext))]
-    [Migration("20240307022154_InitialSet")]
+    [Migration("20240312032358_InitialSet")]
     partial class InitialSet
     {
         /// <inheritdoc />
@@ -102,9 +102,6 @@ namespace Mock_Project_Group9.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BuyUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -171,9 +168,6 @@ namespace Mock_Project_Group9.Migrations
             modelBuilder.Entity("Mock_Project_Group9.Models.Users.User", b =>
                 {
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BuyUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")

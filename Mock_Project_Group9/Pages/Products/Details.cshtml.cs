@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Mock_Project_Group9.Database;
-using Mock_Project_Group9.Models.Users;
+using Mock_Project_Group9.Models.Products;
 
-namespace Mock_Project_Group9.Pages.User
+namespace Mock_Project_Group9.Pages.Products
 {
     public class DetailsModel : PageModel
     {
@@ -19,23 +19,23 @@ namespace Mock_Project_Group9.Pages.User
             _context = context;
         }
 
-      public Models.Users.User User { get; set; } = default!; 
+      public Product Product { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null || _context.users == null)
+            if (id == null || _context.products == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.users.FirstOrDefaultAsync(m => m.UserId == id);
-            if (user == null)
+            var product = await _context.products.FirstOrDefaultAsync(m => m.ProductId == id);
+            if (product == null)
             {
                 return NotFound();
             }
             else 
             {
-                User = user;
+                Product = product;
             }
             return Page();
         }

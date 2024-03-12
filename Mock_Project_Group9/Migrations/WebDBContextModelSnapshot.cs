@@ -99,9 +99,6 @@ namespace Mock_Project_Group9.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BuyUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -168,9 +165,6 @@ namespace Mock_Project_Group9.Migrations
             modelBuilder.Entity("Mock_Project_Group9.Models.Users.User", b =>
                 {
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BuyUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")

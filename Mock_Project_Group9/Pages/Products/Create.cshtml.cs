@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Mock_Project_Group9.Database;
-using Mock_Project_Group9.Models.Users;
+using Mock_Project_Group9.Models.Products;
 
-namespace Mock_Project_Group9.Pages.User
+namespace Mock_Project_Group9.Pages.Products
 {
     public class CreateModel : PageModel
     {
@@ -21,24 +21,23 @@ namespace Mock_Project_Group9.Pages.User
 
         public IActionResult OnGet()
         {
-        ViewData["RoleId"] = new SelectList(_context.roles, "RoleId", "RoleName");
-        ViewData["UserId"] = new SelectList(_context.userDetails, "UserId", "Address");
+        ViewData["CategoryId"] = new SelectList(_context.categories, "CategoryId", "CategoryName");
             return Page();
         }
 
         [BindProperty]
-        public Models.Users.User User { get; set; } = default!;
+        public Product Product { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.users == null || User == null)
+            Product.ProductId = Guid.NewGuid();
+          if (!ModelState.IsValid || _context.products == null || Product == null)
             {
                 return Page();
             }
-
-            _context.users.Add(User);
+            _context.products.Add(Product);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mock_Project_Group9.Database;
-using Mock_Project_Group9.Models.Users;
+using Mock_Project_Group9.Models.Products;
 
-namespace Mock_Project_Group9.Pages.User
+namespace Mock_Project_Group9.Pages.Products
 {
     public class EditModel : PageModel
     {
@@ -21,23 +21,22 @@ namespace Mock_Project_Group9.Pages.User
         }
 
         [BindProperty]
-        public Models.Users.User User { get; set; } = default!;
+        public Product Product { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null || _context.users == null)
+            if (id == null || _context.products == null)
             {
                 return NotFound();
             }
 
-            var user =  await _context.users.FirstOrDefaultAsync(m => m.UserId == id);
-            if (user == null)
+            var product =  await _context.products.FirstOrDefaultAsync(m => m.ProductId == id);
+            if (product == null)
             {
                 return NotFound();
             }
-            User = user;
-           ViewData["RoleId"] = new SelectList(_context.roles, "RoleId", "RoleName");
-           ViewData["UserId"] = new SelectList(_context.userDetails, "UserId", "Address");
+            Product = product;
+           ViewData["CategoryId"] = new SelectList(_context.categories, "CategoryId", "CategoryName");
             return Page();
         }
 
@@ -50,7 +49,7 @@ namespace Mock_Project_Group9.Pages.User
                 return Page();
             }
 
-            _context.Attach(User).State = EntityState.Modified;
+            _context.Attach(Product).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace Mock_Project_Group9.Pages.User
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(User.UserId))
+                if (!ProductExists(Product.ProductId))
                 {
                     return NotFound();
                 }
@@ -71,9 +70,9 @@ namespace Mock_Project_Group9.Pages.User
             return RedirectToPage("./Index");
         }
 
-        private bool UserExists(Guid id)
+        private bool ProductExists(Guid id)
         {
-          return (_context.users?.Any(e => e.UserId == id)).GetValueOrDefault();
+          return (_context.products?.Any(e => e.ProductId == id)).GetValueOrDefault();
         }
     }
 }

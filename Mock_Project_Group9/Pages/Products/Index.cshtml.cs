@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Mock_Project_Group9.Database;
-using Mock_Project_Group9.Models.Users;
+using Mock_Project_Group9.Models.Products;
 
-namespace Mock_Project_Group9.Pages.User
+namespace Mock_Project_Group9.Pages.Products
 {
     public class IndexModel : PageModel
     {
@@ -19,15 +19,14 @@ namespace Mock_Project_Group9.Pages.User
             _context = context;
         }
 
-        public IList<Models.Users.User> User { get;set; } = default!;
+        public IList<Product> Product { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.users != null)
+            if (_context.products != null)
             {
-                User = await _context.users
-                .Include(u => u.Role)
-                .Include(u => u.UserDetails).ToListAsync();
+                Product = await _context.products
+                .Include(p => p.Category).ToListAsync();
             }
         }
     }

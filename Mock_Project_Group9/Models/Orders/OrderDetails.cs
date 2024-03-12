@@ -13,7 +13,7 @@ namespace Mock_Project_Group9.Models.Orders
         public float UnitStock { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         [DisplayFormat(NullDisplayText = "No status")]
-        public string Status { get; set;}
+        public string? Status { get; set;}
         public Order? Order {  get; set; }
         public Product? Product { get; set; }
     }

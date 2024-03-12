@@ -1,11 +1,11 @@
 ﻿@page
-@model Mock_Project_Group9.Pages.User.CreateModel
+@model Mock_Project_Group9.Pages.Users.EditModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
 <h4>User</h4>
 <hr />
@@ -13,10 +13,7 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="User.UserId" class="control-label"></label>
-                <select asp-for="User.UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
+            <input type="hidden" asp-for="User.UserId" />
             <div class="form-group">
                 <label asp-for="User.UserName" class="control-label"></label>
                 <input asp-for="User.UserName" class="form-control" />
@@ -29,7 +26,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="User.RoleId" class="control-label"></label>
-                <select asp-for="User.RoleId" class="form-control" multiple size="2" asp-items="ViewBag.RoleId"></select>
+                <select asp-for="User.RoleId" class="form-control" asp-items="ViewBag.RoleId"></select>
+                <span asp-validation-for="User.RoleId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="User.Email" class="control-label"></label>
@@ -37,14 +35,14 @@
                 <span asp-validation-for="User.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {
