@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Mock_Project_Group9.Database;
 using Mock_Project_Group9.Models.Users;
 
-namespace Mock_Project_Group9.Pages.Role
+namespace Mock_Project_Group9.Pages.UserDetails
 {
     public class CreateModel : PageModel
     {
@@ -25,19 +25,18 @@ namespace Mock_Project_Group9.Pages.Role
         }
 
         [BindProperty]
-        public Models.Users.Role Role { get; set; } = default!;
+        public Models.Users.UserDetails UserDetails { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            Role.RoleId = Guid.NewGuid();
-          if (!ModelState.IsValid || _context.roles == null || Role == null)
+          if (!ModelState.IsValid || _context.userDetails == null || UserDetails == null)
             {
                 return Page();
             }
 
-            _context.roles.Add(Role);
+            _context.userDetails.Add(UserDetails);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

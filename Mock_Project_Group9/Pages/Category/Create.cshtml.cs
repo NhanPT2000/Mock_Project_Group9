@@ -31,6 +31,7 @@ namespace Mock_Project_Group9.Pages.Category
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            Category.CategoryId = Guid.NewGuid();
           if (!ModelState.IsValid || _context.categories == null || Category == null)
             {
                 return Page();
