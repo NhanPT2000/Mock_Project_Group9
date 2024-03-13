@@ -66,7 +66,7 @@ namespace Mock_Project_Group9.Pages.UserDetails
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Details/"+UserDetails.UserDetailsId);
         }
 
         private bool UserDetailsExists(Guid id)

@@ -32,7 +32,6 @@ namespace Mock_Project_Group9.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<Guid?>("UserId")
@@ -57,7 +56,6 @@ namespace Mock_Project_Group9.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<float>("UnitPrice")
@@ -103,7 +101,6 @@ namespace Mock_Project_Group9.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Images")
-                        .IsRequired()
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("ProductName")
@@ -165,6 +162,7 @@ namespace Mock_Project_Group9.Migrations
             modelBuilder.Entity("Mock_Project_Group9.Models.Users.User", b =>
                 {
                     b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
@@ -191,7 +189,7 @@ namespace Mock_Project_Group9.Migrations
 
             modelBuilder.Entity("Mock_Project_Group9.Models.Users.UserDetails", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("UserDetailsId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -206,11 +204,17 @@ namespace Mock_Project_Group9.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("UserDetailsId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("userDetails");
                 });
@@ -281,15 +285,18 @@ namespace Mock_Project_Group9.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Mock_Project_Group9.Models.Users.UserDetails", "UserDetails")
-                        .WithOne("User")
-                        .HasForeignKey("Mock_Project_Group9.Models.Users.User", "UserId")
+                    b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Mock_Project_Group9.Models.Users.UserDetails", b =>
+                {
+                    b.HasOne("Mock_Project_Group9.Models.Users.User", "User")
+                        .WithOne("UserDetails")
+                        .HasForeignKey("Mock_Project_Group9.Models.Users.UserDetails", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Role");
-
-                    b.Navigation("UserDetails");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Mock_Project_Group9.Models.Orders.Order", b =>
@@ -319,12 +326,8 @@ namespace Mock_Project_Group9.Migrations
                     b.Navigation("BuyUsers");
 
                     b.Navigation("Orders");
-                });
 
-            modelBuilder.Entity("Mock_Project_Group9.Models.Users.UserDetails", b =>
-                {
-                    b.Navigation("User")
-                        .IsRequired();
+                    b.Navigation("UserDetails");
                 });
 #pragma warning restore 612, 618
         }

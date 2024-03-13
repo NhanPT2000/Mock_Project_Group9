@@ -34,9 +34,11 @@ namespace Mock_Project_Group9.Database
             modelBuilder.Entity<User>().HasOne(u => u.Role)
                 .WithMany(r => r.Users)
                 .HasForeignKey(u => u.RoleId);
-            modelBuilder.Entity<UserDetails>().HasOne(u => u.User)
-                .WithOne(u => u.UserDetails)
-                .HasForeignKey<User>(ud => ud.UserId);
+            modelBuilder.Entity<User>().HasOne(u => u.UserDetails)
+                .WithOne(u => u.User)
+                .IsRequired(false)
+                .HasForeignKey<UserDetails>(ud => ud.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Order>().HasOne(o => o.User)
                 .WithMany(u => u.Orders)
                 .HasForeignKey(o => o.UserId);

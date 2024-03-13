@@ -35,12 +35,22 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.User.Email)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.UserDetails)
-        </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.User.UserDetails.Address)
         </dd>
+        @if(Model.User.UserDetails == null)
+        {
+            <a class="link-warning link-offset-2 link-underline link-underline-opacity-0"
+               asp-page="../UserDetails/Create" asp-route-id="@Model.User.UserId">
+                Add user details
+            </a>
+        } else{
+        <dt class="col-sm-2">
+            <a class="link-success link-offset-2 link-underline link-underline-opacity-0"
+                   asp-page="../UserDetails/Details" asp-route-id="@Model.User.UserDetails.UserDetailsId">
+               See this user details</a>
+        </dt>
+        }
     </dl>
 </div>
 <div>

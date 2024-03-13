@@ -37,6 +37,11 @@ namespace Mock_Project_Group9.Pages.Users
             {
                 User = user;
             }
+            var userDetails = await _context.userDetails.FirstOrDefaultAsync(u => u.UserId == id);
+            if(userDetails != null) 
+            {
+                User.UserDetails = userDetails;
+            }
             return Page();
         }
     }

@@ -23,6 +23,7 @@ namespace Mock_Project_Group9.Models.Users
         [Column(TypeName = "nvarchar(50)")]
         [EmailAddress]
         public string Email { get; set; }
+        [ForeignKey("UserId")]
         public UserDetails? UserDetails { get; set; }
         public ICollection<BuyUser>? BuyUsers { get; set; }
         public ICollection<Order>? Orders { get; set; }

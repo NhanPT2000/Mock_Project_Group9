@@ -5,12 +5,12 @@ namespace Mock_Project_Group9.Models.Users
 {
     public class UserDetails
     {
-        [Required]
         [Key]
+        public Guid UserDetailsId {  get; set; }
         public Guid UserId { get; set; }
-        [Required(ErrorMessage = "User name is required")]
+
         [Column(TypeName = "nvarchar(50)")]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         [Required(ErrorMessage = "Address is required")]
         [Column(TypeName = "nvarchar(50)")]
         public string Address { get; set; }
@@ -20,7 +20,6 @@ namespace Mock_Project_Group9.Models.Users
         public string Phone { get; set; }
         [DisplayFormat(NullDisplayText = "No status")]
         public string? Status { get; set; }
-
         public User? User { get; set; }
     }
 }
