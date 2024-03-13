@@ -1,0 +1,93 @@
+﻿@page
+@model Mock_Project_Group9.Pages.ProductModel
+
+@{
+    ViewData["Title"] = "Product";
+}
+
+<body>
+    <section style="background-image: url(assets/images/menu-bg.png);"
+             class="our-menu section bg-light repeat-img" id="menu">
+        <div class="sec-wp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="sec-title text-center mb-5">
+                            <h2 class="sec-text">Eat fresh & healthy</h2>
+                            <div class="sec-title-shape mb-4">
+                                <img src="assets/images/title-shape.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- category list  -->
+                <div class="menu-tab-wp">
+                    <div class="row">
+                        <div class="col-lg-12 m-auto">
+                            <div class="menu-tab text-center">
+                                <ul class="filters">
+                                    <li class="filter" data-filter=".all, .breakfast, .lunch, .dinner">
+                                        All
+                                    </li>
+                                    @foreach (var item in Model.Product){
+                                        <li class="filter" data-filter=".all, .breakfast, .lunch, .dinner">
+                                            @item.Category.CategoryName
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- menu list  -->
+                <div class="menu-list-row">
+                    <div class="row g-xxl-5 bydefault_show" id="menu-dish">
+                        @foreach (var item in Model.Product){
+                            <div class="col-lg-4 col-sm-6 dish-box-wp breakfast" data-cat="breakfast">
+                                <div class="dish-box text-center">
+                                    <div class="dist-img">
+                                        <img src="assets/images/dish/1.png" alt="">
+                                    </div>
+                                    <div class="dish-rating">
+                                        5
+                                        <i class="uil uil-star"></i>
+                                    </div>
+                                    <div class="dish-title">
+                                        <h3 class="h3-title">@item.ProductName</h3>
+                                    </div>
+                                    <div class="dish-info">
+                                        <ul>
+                                            <li>
+                                                <p>Category</p>
+                                                <b>@item.Category.CategoryName</b>
+                                            </li>
+                                            <li>
+                                                <p>Quantity</p>
+                                                <b>@item.UnitStock</b>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="dist-bottom-row">
+                                        <ul>
+                                            <li>
+                                                <b>@item.UnitPrice₫</b>
+                                            </li>
+                                            <li>
+                                                <button class="dish-add-btn">
+                                                    <i class="uil uil-plus"></i>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+
+}

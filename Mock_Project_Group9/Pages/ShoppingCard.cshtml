@@ -1,0 +1,49 @@
+﻿@page
+@model Mock_Project_Group9.Pages.ShoppingCardModel
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container">
+    <h1 class="mt-5">Your Shopping Cart</h1>
+    <div class="row mt-4">
+        @if (Model.Product.Count == 0)
+        {
+            <p>Your shopping cart is empty.</p>
+        }
+        else
+        {
+            var total = 0.0;
+            @foreach (var product in Model.Product)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.ProductName</h5>
+                            <p class="card-text">Price: $@product.UnitPrice</p>
+                            <p class="card-text">Quantity: @product.UnitStock</p>
+                        </div>
+                    </div>
+                </div>
+                total += product.UnitPrice;
+            }
+
+                <div class="d-flex">
+                <div class="col-md-6 p-2" >
+                    <h2>Payment method</h2>
+                    <div class="row mt-5">
+                        <img class="col-md-2" src="https://short.com.vn/xJQI" alt="momo logo" />
+                        <img class="col-md-2" src="https://short.com.vn/SMVV" alt="momo logo" />
+                    </div>
+                        
+
+                    </div>
+
+                <div class="col-md-6 p-2" style="background: #FF8243 ">
+                    <h2>Total: @total ₫</h2>
+                    </div>
+                </div>
+        }
+    </div>
+</div>
+
