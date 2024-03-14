@@ -28,7 +28,7 @@ namespace Mock_Project_Group9.Pages.UserDetails
                 return NotFound();
             }
 
-            var userdetails = await _context.userDetails.FirstOrDefaultAsync(m => m.UserId == id);
+            var userdetails = await _context.userDetails.FirstOrDefaultAsync(m => m.UserDetailsId == id);
             if (userdetails == null)
             {
                 return NotFound();

@@ -42,13 +42,14 @@
         {
             <a class="link-warning link-offset-2 link-underline link-underline-opacity-0"
                asp-page="../UserDetails/Create" asp-route-id="@Model.User.UserId">
-                Add user details
+                Fill in this User's information
             </a>
         } else{
         <dt class="col-sm-2">
             <a class="link-success link-offset-2 link-underline link-underline-opacity-0"
                    asp-page="../UserDetails/Details" asp-route-id="@Model.User.UserDetails.UserDetailsId">
-               See this user details</a>
+                    See this User's information
+                </a>
         </dt>
         }
     </dl>

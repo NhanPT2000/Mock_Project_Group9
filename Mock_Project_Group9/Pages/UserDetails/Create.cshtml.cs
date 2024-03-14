@@ -21,7 +21,7 @@ namespace Mock_Project_Group9.Pages.UserDetails
             _context = context;
         }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public Models.Users.UserDetails UserDetails { get; set; } = default!;
 
         public Guid _id { get; set; }
@@ -53,9 +53,29 @@ namespace Mock_Project_Group9.Pages.UserDetails
             }
 
             _context.userDetails.Add(UserDetails);
-            await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Details/"+UserDetails.UserDetailsId);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserDetailsExists(UserDetails.UserId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Redirect("./Details?id=" + UserDetails.UserDetailsId);
+        }
+
+        private bool UserDetailsExists(Guid id)
+        {
+            return (_context.userDetails?.Any(e => e.UserId == id)).GetValueOrDefault();
         }
     }
 }

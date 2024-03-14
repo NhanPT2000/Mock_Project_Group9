@@ -23,6 +23,8 @@ namespace Mock_Project_Group9.Pages.UserDetails
         [BindProperty]
         public Models.Users.UserDetails UserDetails { get; set; } = default!;
 
+        public Guid _id {  get; set; }
+
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null || _context.userDetails == null)
@@ -36,6 +38,7 @@ namespace Mock_Project_Group9.Pages.UserDetails
                 return NotFound();
             }
             UserDetails = userdetails;
+            _id = id ?? Guid.Empty;
             return Page();
         }
 
@@ -66,7 +69,7 @@ namespace Mock_Project_Group9.Pages.UserDetails
                 }
             }
 
-            return RedirectToPage("./Details/"+UserDetails.UserDetailsId);
+            return Redirect("./Details?id=" + UserDetails.UserDetailsId);
         }
 
         private bool UserDetailsExists(Guid id)

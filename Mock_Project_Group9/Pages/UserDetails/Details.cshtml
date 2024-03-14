@@ -8,7 +8,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>UserDetails</h4>
+    <h4>@Html.DisplayNameFor(model => model.UserDetails.UserName)'s Information</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -39,5 +39,5 @@
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.UserDetails?.UserId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="../Users/Details" asp-route-id="@Model.UserDetails?.UserId">Back to User</a>
 </div>
