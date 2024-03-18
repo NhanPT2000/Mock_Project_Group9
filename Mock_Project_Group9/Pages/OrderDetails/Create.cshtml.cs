@@ -36,7 +36,7 @@ namespace Mock_Project_Group9.Pages.OrderDetails
             OrderDetails.OrderDetailId = Guid.NewGuid();
           if (!ModelState.IsValid || _context.orderDetails == null || OrderDetails == null)
             {
-                return Page();
+                return OnGet();
             }
 
             _context.orderDetails.Add(OrderDetails);

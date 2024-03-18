@@ -34,7 +34,7 @@ namespace Mock_Project_Group9.Pages.Role
             Role.RoleId = Guid.NewGuid();
           if (!ModelState.IsValid || _context.roles == null || Role == null)
             {
-                return Page();
+                return OnGet();
             }
 
             _context.roles.Add(Role);

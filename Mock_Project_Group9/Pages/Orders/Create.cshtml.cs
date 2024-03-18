@@ -35,7 +35,7 @@ namespace Mock_Project_Group9.Pages.Orders
             Order.OrderId = Guid.NewGuid();
           if (!ModelState.IsValid || _context.orders == null || Order == null)
             {
-                return Page();
+                return OnGet();
             }
             _context.orders.Add(Order);
             await _context.SaveChangesAsync();

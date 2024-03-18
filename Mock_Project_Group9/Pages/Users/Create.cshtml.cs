@@ -38,7 +38,7 @@ namespace Mock_Project_Group9.Pages.Users
             User.UserId = Guid.NewGuid();
           if (!ModelState.IsValid || _context.users == null || User == null)
             {
-                return Page();
+                return OnGet();
             }
 
             _context.users.Add(User);

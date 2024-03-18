@@ -57,7 +57,7 @@ namespace Mock_Project_Group9.Pages.Products
             }
             if (!ModelState.IsValid || _context.products == null || Product == null)
             {
-                return Page();
+                return OnGet();
             }
             _context.products.Add(Product);
             await _context.SaveChangesAsync();

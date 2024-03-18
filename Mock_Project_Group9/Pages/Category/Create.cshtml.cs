@@ -34,7 +34,7 @@ namespace Mock_Project_Group9.Pages.Category
             Category.CategoryId = Guid.NewGuid();
           if (!ModelState.IsValid || _context.categories == null || Category == null)
             {
-                return Page();
+                return OnGet();
             }
 
             _context.categories.Add(Category);
