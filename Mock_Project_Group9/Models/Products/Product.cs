@@ -17,9 +17,9 @@ namespace Mock_Project_Group9.Models.Products
         public Guid CategoryId { get; set; }
         public Category? Category { get; set; }
         /*Composite Key*/
-        public ICollection<BuyUser>? BuyUsers { get; set; }
+        public ICollection<ItemCart>? BuyUsers { get; set; }
         /**/
-        public float UnitStock { get; set; }
+        public int UnitStock { get; set; }
         public float UnitPrice { get; set; }
         [Column(TypeName = "nvarchar(250)")]
         public string? Images { get; set; }

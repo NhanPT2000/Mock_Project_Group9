@@ -15,7 +15,7 @@ namespace Mock_Project_Group9.Database
         public DbSet<OrderDetails> orderDetails { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<Product> products { get; set; }
-        public DbSet<BuyUser> buyUsers { get; set; }
+        public DbSet<ItemCart> buyUsers { get; set; }
         public DbSet<Role> roles { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<UserDetails> userDetails { get; set; }
@@ -45,14 +45,14 @@ namespace Mock_Project_Group9.Database
             modelBuilder.Entity<Product>().HasOne(p => p.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId);
-            modelBuilder.Entity<BuyUser>()
+            modelBuilder.Entity<ItemCart>()
                 .HasKey(e => new {e.BuyUserId, e.UserId, e.ProductId });
-            modelBuilder.Entity<BuyUser>()
+            modelBuilder.Entity<ItemCart>()
                 .HasOne(bu => bu.User)
                 .WithMany(u => u.BuyUsers)
                 .HasForeignKey(bu => bu.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<BuyUser>()
+            modelBuilder.Entity<ItemCart>()
                 .HasOne(bu => bu.Product)
                 .WithMany(p => p.BuyUsers)
                 .HasForeignKey(bu => bu.ProductId)

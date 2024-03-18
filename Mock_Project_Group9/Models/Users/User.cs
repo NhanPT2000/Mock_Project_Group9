@@ -25,7 +25,7 @@ namespace Mock_Project_Group9.Models.Users
         public string Email { get; set; }
         [ForeignKey("UserId")]
         public UserDetails? UserDetails { get; set; }
-        public ICollection<BuyUser>? BuyUsers { get; set; }
+        public ICollection<ItemCart>? BuyUsers { get; set; }
         public ICollection<Order>? Orders { get; set; }
     }
 }
