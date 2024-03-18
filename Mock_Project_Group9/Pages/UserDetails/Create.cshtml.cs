@@ -47,9 +47,9 @@ namespace Mock_Project_Group9.Pages.UserDetails
         public async Task<IActionResult> OnPostAsync()
         {
             UserDetails.UserDetailsId = Guid.NewGuid();
-          if (!ModelState.IsValid || _context.userDetails == null || UserDetails == null)
+            if (!ModelState.IsValid)
             {
-                return Page();
+                return await OnGet(UserDetails.UserId);
             }
 
             _context.userDetails.Add(UserDetails);

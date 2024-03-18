@@ -19,6 +19,14 @@ builder.Services.AddDbContext<WebDBContext>(options =>
 //
 builder.Services.AddScoped(typeof(WebDBContext));
 
+
+//Register Sessions
+builder.Services.AddDistributedMemoryCache();           
+builder.Services.AddSession(cfg => {                    
+    cfg.Cookie.Name = "TranQuyNhon";             
+    cfg.IdleTimeout = new TimeSpan(0, 30, 0);   
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,6 +39,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseSession();
 
 app.UseRouting();
 

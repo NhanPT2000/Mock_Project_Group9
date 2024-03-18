@@ -33,6 +33,8 @@ namespace Mock_Project_Group9.Pages.Users
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            ViewData["RoleId"] = new SelectList(_context.roles, "RoleId", "RoleName");
+            ViewData["UserId"] = new SelectList(_context.userDetails, "UserId", "UserName");
             User.UserId = Guid.NewGuid();
           if (!ModelState.IsValid || _context.users == null || User == null)
             {

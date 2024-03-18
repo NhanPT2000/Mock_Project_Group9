@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.User[0].Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User[0].UserDetails)
+                User Informations
             </th>
             <th></th>
         </tr>
@@ -47,7 +47,20 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserDetails.Address)
+                    @if (item.UserDetails == null)
+                    {
+                        <a class="link-warning link-offset-2 link-underline link-underline-opacity-0">
+                           No informations found
+                        </a>
+                    }
+                    else
+                    {
+                        
+                         <a class="link-success link-offset-2 link-underline link-underline-opacity-0"
+                               asp-page="../UserDetails/Details" asp-route-id="@item.UserDetails.UserDetailsId">
+                                See this User's information
+                            </a>
+                    }
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.UserId">Edit</a> |
